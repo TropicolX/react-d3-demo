@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const Chart = () => {
+const BarChart = () => {
   const chartRef = useRef();
   
   useEffect(() => {
@@ -29,4 +29,4 @@ const Chart = () => {
   return <svg ref={chartRef}></svg>;
 };
 
-export default Chart;
+export default BarChart;
