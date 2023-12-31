@@ -1,7 +1,7 @@
-import Chart from "./components/Chart";
+import BarChart from "./components/BarChart";
 
 function App() {
-  return <Chart />;
+  return <BarChart />;
 }
 
 export default App;
