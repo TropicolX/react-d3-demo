@@ -1,9 +1,5 @@
 body {
-  /* display: flex; */
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 50px;
-  padding-left: 10px;
-  margin: 10px;
-  border: 1px solid black;
 }

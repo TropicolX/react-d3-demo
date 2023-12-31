@@ -18,8 +18,7 @@ const Chart = () => {
     svg
       .selectAll("rect")
       .data(data)
-      .enter()
-      .append("rect")
+      .join("rect")
       .attr("width", barWidth)
       .attr("height", (barHeight, i) => barHeight)
       .attr("fill", "skyblue")
