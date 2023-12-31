@@ -6,7 +6,6 @@ const Chart = () => {
   const data = [130, 200, 170, 140, 130, 250, 160];
 
   useEffect(() => {
-    // D3.js code for creating a bar chart
     const svgHeight = 300;
     const svgWidth = 450;
     const barWidth = 60;
