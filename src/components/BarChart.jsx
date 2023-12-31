@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const Chart = () => {
+const BarChart = () => {
   const chartRef = useRef();
-  const data = [130, 200, 170, 140, 130, 250, 160];
-
+  
   useEffect(() => {
+    const data = [130, 200, 170, 140, 130, 250, 160];
     const svgHeight = 300;
     const svgWidth = 450;
     const barWidth = 60;
@@ -20,7 +20,7 @@ const Chart = () => {
       .data(data)
       .join("rect")
       .attr("width", barWidth)
-      .attr("height", (barHeight, i) => barHeight)
+      .attr("height", (barHeight) => barHeight)
       .attr("fill", "skyblue")
       .attr("x", (_, i) => i * (barWidth + 5))
       .attr("y", (barHeight) => svgHeight - barHeight);
@@ -29,4 +29,4 @@ const Chart = () => {
   return <svg ref={chartRef}></svg>;
 };
 
-export default Chart;
+export default BarChart;
