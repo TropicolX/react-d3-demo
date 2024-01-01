@@ -6,23 +6,30 @@ const BarChart = () => {
 
   useEffect(() => {
     const data = [
-      { day: "Day 1", sales: 4 },
-      { day: "Day 2", sales: 12 },
-      { day: "Day 3", sales: 20 },
-      { day: "Day 4", sales: 7 },
-      { day: "Day 5", sales: 5 },
-      { day: "Day 6", sales: 6 },
-      { day: "Day 7", sales: 8 },
-      { day: "Day 8", sales: 12 },
-      { day: "Day 9", sales: 14 },
-      { day: "Day 10", sales: 9 },
+      { day: "Jan 1", sales: 4 },
+      { day: "Jan 2", sales: 12 },
+      { day: "Jan 3", sales: 20 },
+      { day: "Jan 4", sales: 7 },
+      { day: "Jan 5", sales: 5 },
+      { day: "Jan 6", sales: 6 },
+      { day: "Jan 7", sales: 8 },
+      { day: "Jan 8", sales: 12 },
+      { day: "Jan 9", sales: 14 },
+      { day: "Jan 10", sales: 9 },
+      { day: "Jan 11", sales: 10 },
+      { day: "Jan 12", sales: 6 },
+      { day: "Jan 13", sales: 15 },
+      { day: "Jan 14", sales: 11 },
+      { day: "Jan 15", sales: 13 },
+      { day: "Jan 16", sales: 9 },
+      { day: "Jan 17", sales: 8 },
     ];
     const marginTop = 30;
     const marginBottom = 30;
     const marginLeft = 40;
     const marginRight = 40;
     const height = 350;
-    const width = 500;
+    const width = 750;
 
     // Create the horizontal scale and its axis generator.
     const x = d3
