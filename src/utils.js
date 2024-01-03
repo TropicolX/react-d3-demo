@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-function Legend(color, {
+export function Legend(color, {
     title,
     tickSize = 6,
     width = 320, 
@@ -146,5 +146,3 @@ function Legend(color, {
   
     return svg.node();
   }
-
-  export default Legend;
