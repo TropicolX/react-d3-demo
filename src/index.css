@@ -3,3 +3,39 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.container {
+  position: relative;
+}
+
+.tooltip {
+  opacity: 0;
+  background: white;
+  border: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
+
+.container .slice {
+  transition-duration: 0.3s;
+  transition-property: filter, opacity;
+  filter: saturate(100%);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.container.hasHighlight .slice {
+  filter: saturate(50%);
+  opacity: 0.2;
+}
+
+.container.hasHighlight .slice:hover {
+  filter: saturate(100%);
+  opacity: 1;
+}

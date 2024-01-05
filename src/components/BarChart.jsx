@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
+const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 };
+const BAR_PADDING = 0.3;
+
 const BarChart = () => {
   const chartRef = useRef();
 
