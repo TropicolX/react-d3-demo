@@ -16,7 +16,7 @@ const WorldMap = ({ width, height, data }) => {
 	const path = d3.geoPath();
 	const projection = d3
 		.geoMercator()
-		.scale(100)
+		.scale(120)
 		.center([0, 30])
 		.translate([width / 2, height / 2]);
 
@@ -54,17 +54,13 @@ const WorldMap = ({ width, height, data }) => {
 	}, [zoom]);
 
 	return (
-		<div className="container">
+		<div>
 			<svg
 				ref={chartRef}
-				className="world-map"
+				className="viz"
 				width={width}
 				height={height}
 				viewBox={`0 0 ${width} ${height}`}
-				style={{
-					width: "100%",
-					height: "auto",
-				}}
 				onClick={() => reset()}
 			>
 				<g className="topography" style={mapStyle}>
@@ -85,22 +81,24 @@ const WorldMap = ({ width, height, data }) => {
 								const population = (
 									worldPopulation[d.id] || "N/A"
 								).toLocaleString();
+								const x = d3.pointer(event)[0];
+								const y = d3.pointer(event)[1];
+
 								setTooltipData({
 									name: d.properties.name,
 									population,
-									left: event.pageX - 90,
-									top: event.pageY - 80,
+									left: x,
+									top: y + 200,
 								});
 							}}
 						/>
 					))}
 				</g>
-				<g className="legend" transform="translate(20,0)">
+				<g className="legend" transform="translate(10,10)">
 					<Legend
 						color={colorScale}
-						width={500}
-						title="World population"
-						tickFormat={d3.format(",.0f")}
+						width={600}
+						tickFormat={d3.format("~s")}
 					/>
 				</g>
 			</svg>

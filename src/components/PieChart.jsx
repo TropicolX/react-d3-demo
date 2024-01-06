@@ -48,12 +48,10 @@ const PieChart = ({ width, height, data }) => {
 			<svg
 				width={width}
 				height={height}
-				viewBox={`${-width / 2} ${-height / 2} ${width} ${height}`}
-				style={{
-					width: "100%",
-					height: "auto",
-					font: "16px sans-serif",
-				}}
+				viewBox={`${-width / 2 + 100} ${
+					-height / 2
+				} ${width} ${height}`}
+				className="viz"
 			>
 				{arcs.map((d, i) => (
 					<g
@@ -89,7 +87,7 @@ const PieChart = ({ width, height, data }) => {
 				{/* Legend */}
 				<g>
 					{data.map((d, i) => {
-						const x = width / 2 - 150;
+						const x = width / 2 - 70;
 						const y = -height / 2 + i * 20 + 20;
 
 						return (

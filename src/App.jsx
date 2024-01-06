@@ -34,6 +34,7 @@ const barChartData = [
 function App() {
 	const [worldPopulation, setWorldPopulation] = useState(null);
 	const [topography, setTopography] = useState(null);
+	const [barChartData, setBarChartData] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -57,6 +58,14 @@ function App() {
 				),
 			]).then((fetchedData) => {
 				const topographyData = fetchedData[0];
+				const barChartData = topographyData.features
+					.map((d) => ({
+						country: d.properties.name,
+						population: populationData[d.id] || 0,
+					}))
+					.sort((a, b) => b.population - a.population)
+					.slice(0, 12);
+				setBarChartData(barChartData);
 				setWorldPopulation(populationData);
 				setTopography(topographyData);
 			});
@@ -71,13 +80,52 @@ function App() {
 
 	return (
 		<div className="dashboard">
-			<WorldMap
-				width={800}
-				height={600}
-				data={{ worldPopulation, topography }}
-			/>
-			<PieChart width={928} height={500} data={pieChartData} />
-			<BarChart width={900} height={350} data={barChartData} />
+			<div className="wrapper">
+				<h1>
+					<span className="thin">World</span>
+					<span className="bold">Population</span> Insights 2022
+				</h1>
+				<main className="main">
+					<div className="grid">
+						<div className="card">
+							<h2>Total Population</h2>
+							<span className="stat">7.95B</span>
+						</div>
+						<div className="card">
+							<h2>Male Population</h2>
+							<span className="stat">4B</span>
+						</div>
+						<div className="card">
+							<h2>Female Population</h2>
+							<span className="stat">3.95B</span>
+						</div>
+						<div className="map-container">
+							<h2>World Population by Country</h2>
+							<WorldMap
+								width={800}
+								height={600}
+								data={{ worldPopulation, topography }}
+							/>
+						</div>
+						<div className="pie-chart-container">
+							<h2>World Population by Religion</h2>
+							<PieChart
+								width={750}
+								height={450}
+								data={pieChartData}
+							/>
+						</div>
+						<div className="bar-chart-container">
+							<h2>Top Countries by Population</h2>
+							<BarChart
+								width={1280}
+								height={500}
+								data={barChartData}
+							/>
+						</div>
+					</div>
+				</main>
+			</div>
 		</div>
 	);
 }

@@ -185,11 +185,13 @@ const Legend = ({
 					.attr("x", marginLeft)
 					.attr("y", marginTop + marginBottom - height - 6)
 					.attr("fill", "currentColor")
+					.attr("font-size", "1.2rem")
 					.attr("text-anchor", "start")
 					.attr("font-weight", "bold")
 					.attr("class", "title")
 					.text(title)
-			);
+			)
+			.call((g) => g.selectAll("text").attr("font-size", "18px"));
 	}, []);
 
 	return (
