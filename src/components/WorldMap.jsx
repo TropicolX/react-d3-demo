@@ -7,7 +7,7 @@ const WorldMap = ({ width, height, data }) => {
 	const chartRef = useRef(null);
 	const [tooltipVisible, setTooltipVisible] = useState(false);
 	const [tooltipData, setTooltipData] = useState(null);
-	const [mapStyle, setMapStyle] = useState({});
+	const [mapStyle, setMapStyle] = useState(null);
 
 	const worldPopulation = data.worldPopulation;
 	const topography = data.topography;
@@ -48,13 +48,23 @@ const WorldMap = ({ width, height, data }) => {
 			);
 	}
 
+	const handleMove = (event, d) => {
+		const population = (worldPopulation[d.id] || "N/A").toLocaleString();
+		setTooltipData({
+			name: d.properties.name,
+			population,
+			left: event.clientX - 70,
+			top: event.clientY - 220,
+		});
+	};
+
 	useEffect(() => {
 		const svg = d3.select(chartRef.current);
 		svg.call(zoom);
 	}, [zoom]);
 
 	return (
-		<div>
+		<div className="container">
 			<svg
 				ref={chartRef}
 				className="viz"
@@ -71,26 +81,14 @@ const WorldMap = ({ width, height, data }) => {
 							fill={colorScale(worldPopulation[d.id] || 0)}
 							stroke="#FFFFFF"
 							strokeWidth={0.3}
-							onMouseOver={() => {
+							onMouseEnter={() => {
 								setTooltipVisible(true);
 							}}
 							onMouseLeave={() => {
 								setTooltipVisible(false);
 							}}
-							onMouseMove={(event) => {
-								const population = (
-									worldPopulation[d.id] || "N/A"
-								).toLocaleString();
-								const x = d3.pointer(event)[0];
-								const y = d3.pointer(event)[1];
-
-								setTooltipData({
-									name: d.properties.name,
-									population,
-									left: x,
-									top: y + 200,
-								});
-							}}
+							onMouseMove={(event) => handleMove(event, d)}
+							// onTouchMove={(event) => handleMove(event, d)}
 						/>
 					))}
 				</g>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import * as d3 from "d3";
 
 const PieChart = ({ width, height, data }) => {
@@ -114,7 +114,7 @@ const PieChart = ({ width, height, data }) => {
 
 				{/* Tooltip */}
 				<g
-					onMouseOver={() => setTooltipVisible(true)}
+					onMouseEnter={() => setTooltipVisible(true)}
 					onMouseLeave={() => setTooltipVisible(false)}
 					className={`tooltip ${tooltipVisible ? "visible" : ""}`}
 				>
