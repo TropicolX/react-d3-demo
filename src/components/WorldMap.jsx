@@ -5,10 +5,14 @@ import Legend from "./Legend";
 import useChartDimensions from "./useDimensions";
 
 const WorldMap = ({ height, data }) => {
+	const worldPopulation = data.worldPopulation;
+	const topography = data.topography;
+
 	const [ref, dms] = useChartDimensions({});
 	const width = dms.width;
 
 	const chartRef = useRef(null);
+	const [mapStyle, setMapStyle] = useState(null);
 	const [tooltipVisible, setTooltipVisible] = useState(false);
 	const [tooltipData, setTooltipData] = useState({
 		name: "",
@@ -16,10 +20,6 @@ const WorldMap = ({ height, data }) => {
 		x: 0,
 		y: 0,
 	});
-	const [mapStyle, setMapStyle] = useState(null);
-
-	const worldPopulation = data.worldPopulation;
-	const topography = data.topography;
 
 	// Map and projection
 	const path = d3.geoPath();
