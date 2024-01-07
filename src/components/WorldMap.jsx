@@ -48,16 +48,6 @@ const WorldMap = ({ width, height, data }) => {
 			);
 	}
 
-	const handleMove = (event, d) => {
-		const population = (worldPopulation[d.id] || "N/A").toLocaleString();
-		setTooltipData({
-			name: d.properties.name,
-			population,
-			left: event.clientX - 70,
-			top: event.clientY - 220,
-		});
-	};
-
 	useEffect(() => {
 		const svg = d3.select(chartRef.current);
 		svg.call(zoom);
@@ -87,8 +77,17 @@ const WorldMap = ({ width, height, data }) => {
 							onMouseLeave={() => {
 								setTooltipVisible(false);
 							}}
-							onMouseMove={(event) => handleMove(event, d)}
-							// onTouchMove={(event) => handleMove(event, d)}
+							onMouseMove={(event) => {
+								const population = (
+									worldPopulation[d.id] || "N/A"
+								).toLocaleString();
+								setTooltipData({
+									name: d.properties.name,
+									population,
+									left: event.clientX - 70,
+									top: event.clientY - 220,
+								});
+							}}
 						/>
 					))}
 				</g>
