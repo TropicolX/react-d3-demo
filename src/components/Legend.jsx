@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
 const Legend = ({
@@ -62,7 +62,7 @@ const Legend = ({
 			)
 			.call(tickAdjust)
 			.call((g) => g.select(".domain").remove())
-			.call((g) => g.selectAll("text").attr("font-size", "18px"));
+			.call((g) => g.selectAll("text").attr("font-size", "14px"));
 	}, []);
 
 	return (

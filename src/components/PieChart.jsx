@@ -1,7 +1,13 @@
 import { useState } from "react";
 import * as d3 from "d3";
 
-const PieChart = ({ width, height, data }) => {
+import useChartDimensions from "./useDimensions";
+
+const offsetX = 70;
+
+const PieChart = ({ height, data }) => {
+	const [ref, dms] = useChartDimensions({});
+	const width = dms.width;
 	const [tooltipVisible, setTooltipVisible] = useState(false);
 	const [tooltipData, setTooltipData] = useState({
 		...data[0],
@@ -32,10 +38,9 @@ const PieChart = ({ width, height, data }) => {
 		.sort(null)
 		.value((d) => d.value);
 
-	const arc = d3
-		.arc()
-		.innerRadius(0)
-		.outerRadius(Math.min(width, height) / 2 - 1);
+	const outerRadius = Math.min(width - 2, height - 2) / 2 - offsetX;
+
+	const arc = d3.arc().innerRadius(0).outerRadius(outerRadius);
 
 	// A separate arc generator for labels.
 	const labelRadius = arc.outerRadius()() * 0.75;
@@ -44,13 +49,22 @@ const PieChart = ({ width, height, data }) => {
 	const arcs = pie(data);
 
 	return (
-		<div className="container">
+		<div
+			ref={ref}
+			style={{
+				height,
+			}}
+			className="container"
+		>
 			<svg
 				width={width}
 				height={height}
-				viewBox={`${-width / 2 + 100} ${
+				viewBox={`${-width / 2 + offsetX} ${
 					-height / 2
 				} ${width} ${height}`}
+				style={{
+					overflow: "visible",
+				}}
 				className="viz"
 			>
 				{arcs.map((d, i) => (
@@ -73,7 +87,7 @@ const PieChart = ({ width, height, data }) => {
 							y={arcLabel.centroid(d)[1]}
 							textAnchor="middle"
 							stroke="none"
-							fontSize={20}
+							fontSize={16}
 							strokeWidth={0}
 							fill="white"
 						>
@@ -87,7 +101,7 @@ const PieChart = ({ width, height, data }) => {
 				{/* Legend */}
 				<g>
 					{data.map((d, i) => {
-						const x = width / 2 - 70;
+						const x = outerRadius + 14;
 						const y = -height / 2 + i * 20 + 20;
 
 						return (
@@ -103,6 +117,7 @@ const PieChart = ({ width, height, data }) => {
 									x={x}
 									y={y}
 									dx={25}
+									fontSize={14}
 									alignmentBaseline="hanging"
 								>
 									{d.name}
@@ -142,7 +157,7 @@ const PieChart = ({ width, height, data }) => {
 							textAnchor="start"
 							x={tooltipData.x}
 							y={tooltipData.y + 55}
-							fontSize={17}
+							fontSize={16}
 							fontWeight="bold"
 						>
 							{tooltipData.value.toLocaleString()}

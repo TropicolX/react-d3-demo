@@ -104,6 +104,10 @@ h2 {
 	display: block;
 }
 
+.labels text {
+	display: none;
+}
+
 @media (min-width: 1280px) {
 	.grid {
 		grid-template-columns: repeat(15, minmax(0, 1fr));
@@ -129,5 +133,11 @@ h2 {
 
 	.bar-chart-container {
 		grid-column: span 15 / span 15;
+	}
+}
+
+@media (min-width: 768px) {
+	.labels text {
+		display: block;
 	}
 }

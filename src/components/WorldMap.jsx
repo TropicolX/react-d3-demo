@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
 import Legend from "./Legend";
+import useChartDimensions from "./useDimensions";
 
-const WorldMap = ({ width, height, data }) => {
+const WorldMap = ({ height, data }) => {
+	const [ref, dms] = useChartDimensions({});
+	const width = dms.width;
 	const chartRef = useRef(null);
 	const [tooltipVisible, setTooltipVisible] = useState(false);
 	const [tooltipData, setTooltipData] = useState(null);
@@ -16,9 +19,11 @@ const WorldMap = ({ width, height, data }) => {
 	const path = d3.geoPath();
 	const projection = d3
 		.geoMercator()
-		.scale(120)
+		.scale(85)
 		.center([0, 30])
 		.translate([width / 2, height / 2]);
+
+	const pathGenerator = path.projection(projection);
 
 	// Color scale
 	const colorScale = d3
@@ -54,7 +59,13 @@ const WorldMap = ({ width, height, data }) => {
 	}, [zoom]);
 
 	return (
-		<div className="container">
+		<div
+			ref={ref}
+			style={{
+				height,
+			}}
+			className="container"
+		>
 			<svg
 				ref={chartRef}
 				className="viz"
@@ -67,7 +78,7 @@ const WorldMap = ({ width, height, data }) => {
 					{topography.features.map((d) => (
 						<path
 							key={d.id}
-							d={path.projection(projection)(d)}
+							d={pathGenerator(d)}
 							fill={colorScale(worldPopulation[d.id] || 0)}
 							stroke="#FFFFFF"
 							strokeWidth={0.3}
@@ -94,7 +105,7 @@ const WorldMap = ({ width, height, data }) => {
 				<g className="legend" transform="translate(10,10)">
 					<Legend
 						color={colorScale}
-						width={600}
+						width={height / 1.25}
 						tickFormat={d3.format("~s")}
 					/>
 				</g>
