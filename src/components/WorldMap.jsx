@@ -7,9 +7,15 @@ import useChartDimensions from "./useDimensions";
 const WorldMap = ({ height, data }) => {
 	const [ref, dms] = useChartDimensions({});
 	const width = dms.width;
+
 	const chartRef = useRef(null);
 	const [tooltipVisible, setTooltipVisible] = useState(false);
-	const [tooltipData, setTooltipData] = useState(null);
+	const [tooltipData, setTooltipData] = useState({
+		name: "",
+		population: "",
+		x: 0,
+		y: 0,
+	});
 	const [mapStyle, setMapStyle] = useState(null);
 
 	const worldPopulation = data.worldPopulation;
@@ -92,16 +98,25 @@ const WorldMap = ({ height, data }) => {
 								const population = (
 									worldPopulation[d.id] || "N/A"
 								).toLocaleString();
+
+								// get x and y position relative to the chart
+								const [x, y] = d3.pointer(
+									event,
+									chartRef.current
+								);
+
 								setTooltipData({
 									name: d.properties.name,
 									population,
-									left: event.clientX - 70,
-									top: event.clientY - 220,
+									left: x - 30,
+									top: y - 80,
 								});
 							}}
 						/>
 					))}
 				</g>
+
+				{/* Legend */}
 				<g className="legend" transform="translate(10,10)">
 					<Legend
 						color={colorScale}
@@ -110,6 +125,8 @@ const WorldMap = ({ height, data }) => {
 					/>
 				</g>
 			</svg>
+
+			{/* Tooltip */}
 			{tooltipData && (
 				<div
 					className={`tooltip ${tooltipVisible ? "visible" : ""}`}
