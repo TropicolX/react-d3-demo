@@ -86,16 +86,8 @@ const BarChart = ({ height, data }) => {
             </text>
           ))}
         </g>
-        <g
-          className="x-axis"
-          transform={`translate(0,${chartBottomY})`}
-          fontSize={14}
-        ></g>
-        <g
-          className="y-axis"
-          transform={`translate(${marginLeft},0)`}
-          fontSize={14}
-        ></g>
+        <g className="x-axis" transform={`translate(0,${chartBottomY})`}></g>
+        <g className="y-axis" transform={`translate(${marginLeft},0)`}></g>
       </svg>
     </div>
   );
