@@ -18,6 +18,8 @@ const BarChart = ({ height, data }) => {
     marginRight,
   });
   const width = dms.width;
+  const chartBottomY = height - marginBottom;
+
   // Create the horizontal scale and its axis generator.
   const xScale = d3
     .scaleBand()
@@ -32,7 +34,7 @@ const BarChart = ({ height, data }) => {
     .scaleLinear()
     .domain([0, d3.max(data, (d) => d.population / oneMillion)])
     .nice()
-    .range([height - marginBottom, marginTop]);
+    .range([chartBottomY, marginTop]);
 
   const yAxis = d3.axisLeft(yScale);
 
@@ -70,7 +72,7 @@ const BarChart = ({ height, data }) => {
               key={d.country}
               x={xScale(d.country)}
               y={yScale(d.population / oneMillion)}
-              height={yScale(0) - yScale(d.population / oneMillion)}
+              height={chartBottomY - yScale(d.population / oneMillion)}
               width={xScale.bandwidth()}
               fill="#6baed6"
             />
@@ -91,7 +93,7 @@ const BarChart = ({ height, data }) => {
         </g>
         <g
           className="x-axis"
-          transform={`translate(0,${height - marginBottom})`}
+          transform={`translate(0,${chartBottomY})`}
           fontSize={14}
         ></g>
         <g
