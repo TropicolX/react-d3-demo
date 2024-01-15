@@ -101,7 +101,7 @@ function App() {
             <div className="map-container">
               <h2>World Population by Country</h2>
               <WorldMap
-                // width={800}
+                // width={550}
                 height={450}
                 data={{ worldPopulation, topography }}
               />
@@ -109,7 +109,7 @@ function App() {
             <div className="pie-chart-container">
               <h2>World Population by Religion</h2>
               <PieChart
-                // width={750}
+                // width={650}
                 height={450}
                 data={pieChartData}
               />
@@ -117,7 +117,7 @@ function App() {
             <div className="bar-chart-container">
               <h2>Top Countries by Population (in millions)</h2>
               <BarChart
-                // width={1280}
+                // width={1248}
                 height={500}
                 data={barChartData}
               />
