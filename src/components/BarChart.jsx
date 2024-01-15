@@ -60,7 +60,12 @@ const BarChart = ({ height, data }) => {
       }}
       className="container"
     >
-      <svg width={width} height={height} className="viz">
+      <svg
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        className="viz"
+      >
         <g className="bars">
           {data.map((d) => (
             <rect

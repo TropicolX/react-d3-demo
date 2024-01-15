@@ -78,6 +78,7 @@ const WorldMap = ({ height, data }) => {
         className="viz"
         width={width}
         height={height}
+        viewBox={`0 0 ${width} ${height}`}
         onClick={() => reset()}
       >
         <g className="topography" style={mapStyle}>
