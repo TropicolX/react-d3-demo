@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as d3 from "d3";
 
-import useChartDimensions from "./useDimensions";
+import useChartDimensions from "../hooks/useDimensions";
 
 const offsetX = 70;
 
