@@ -86,15 +86,15 @@ function App() {
         </h1>
         <main className="main">
           <div className="grid">
-            <div className="card">
+            <div className="card stat-card">
               <h2>Total Population</h2>
               <span className="stat">7.95B</span>
             </div>
-            <div className="card">
+            <div className="card stat-card">
               <h2>Male Population</h2>
               <span className="stat">4B</span>
             </div>
-            <div className="card">
+            <div className="card stat-card">
               <h2>Female Population</h2>
               <span className="stat">3.95B</span>
             </div>
