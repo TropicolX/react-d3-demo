@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import * as d3 from "d3";
 
-import useChartDimensions from "../hooks/useDimensions";
+import useChartDimensions from "../hooks/useChartDimensions";
 
 const marginTop = 30;
 const marginBottom = 70;

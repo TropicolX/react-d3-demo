@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
 import Legend from "./Legend";
-import useChartDimensions from "../hooks/useDimensions";
+import useChartDimensions from "../hooks/useChartDimensions";
 
 const WorldMap = ({ height, data }) => {
   const worldPopulation = data.worldPopulation;
