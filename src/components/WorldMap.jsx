@@ -118,7 +118,7 @@ const WorldMap = ({ height, data }) => {
         <g className="legend" transform="translate(10,10)">
           <Legend
             color={colorScale}
-            width={height / 1.25}
+            width={height / 1.4}
             tickFormat={d3.format("~s")}
           />
         </g>
