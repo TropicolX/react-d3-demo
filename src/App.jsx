@@ -98,7 +98,7 @@ function App() {
               <h2>Female Population</h2>
               <span className="stat">3.95B</span>
             </div>
-            <div className="map-container">
+            <div className="card map-container">
               <h2>World Population by Country</h2>
               <WorldMap
                 // width={550}
@@ -106,7 +106,7 @@ function App() {
                 data={{ worldPopulation, topography }}
               />
             </div>
-            <div className="pie-chart-container">
+            <div className="card pie-chart-container">
               <h2>World Population by Religion</h2>
               <PieChart
                 // width={650}
@@ -114,7 +114,7 @@ function App() {
                 data={pieChartData}
               />
             </div>
-            <div className="bar-chart-container">
+            <div className="card bar-chart-container">
               <h2>Top Countries by Population (in millions)</h2>
               <BarChart
                 // width={1248}
